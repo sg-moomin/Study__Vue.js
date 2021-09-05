@@ -1,0 +1,99 @@
+</<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>20210904_vew 공부하기</title>
+    <!-- veu.js 기본 선언  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  </head>
+  <body>
+    <div id = "root">
+      <button> test
+      </button>
+    </div>
+    <div id = "app-3">
+      <li v-for="num in nums">
+        {{ num.text }}
+      </li>
+    </div>
+    <div id = "app-4">
+      <p> {{ testText }} </p>
+      <button v-on:click="reverseMessages"> sg-moomins </button>
+    </div>
+    <div id = "app-5">
+        <p> {{ inputMessage }}</p>
+        <input v-model="inputMessage">
+    </div>
+    <div id = 'app-6'>
+      <ol>
+        <items
+          v-for="item in dataList"
+          v-bind:todo="item"
+          v-bind:key="item.id">
+        </items>
+      </ol>
+    </div>
+
+
+
+  </body>
+  <script>
+      const app = new Veu({
+          el : '#root',
+          test : "hello"
+      });
+  </script>
+  <script>
+        var app2 = new Vue({
+          el: "#app-3",
+          data: {
+            nums: [
+              { text: 'sg-moomin'},
+              { text: 'veu study'},
+              { text: 'clearing'}
+            ]
+          }
+        });
+  </script>
+  <script>
+      var app4 = new Vue({
+          el: '#app-4',
+          data: {
+            testText: 'hello sg-moomins~'
+          },
+          methods: {
+            testMessage: function () {
+              this.testText = this.testText.split('').reverse().join('')
+            }
+          }
+        })
+  </script>
+  <script>
+    var app5 = new Vue({
+      el: '#app-5',
+      data: {
+        inputMessage: 'sg-moomins'
+      }
+    })
+  </script>
+  <script>
+    Vue.component('items',{
+      props: ['todo'],
+      template: '<li>{{todo.text}}</li>'
+    })
+
+    var app6 = new Vue({
+      el: '#app-6'
+      ,data: {
+        dataList: [
+          {id:0, text: '내일 회사가기 싫다'},
+          {id:1, text: '공부하기 싫다'},
+          {id:2, text: 'sg-moomins'}
+        ]
+      }
+    })
+  </script>
+
+
+</html>
