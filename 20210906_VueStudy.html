@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- 전달인자 -->
+    <a v-bind:href="url"></a>
+    <!-- veu.js 기본 선언  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+     <body>
+    <div id="tmp7">
+      <ol>
+        <items
+          v-for="number in groceryList"
+          v-bind:doing="number"
+          v-bind:key="number.id"
+        ></items>
+      </ol>
+    </div>
+    <ul id="listEx">
+      <li v-for="(item, index) in temp">
+        {{ mainMessage }} - {{ index }} - {{ item.message }}
+      </li>
+    </ul>
+    <ul id="v-for-object" class="demo">
+      <li v-for="list in object">
+        {{ list }}
+      </li>
+    </ul>
+
+  </body>
+  <script type="text/javascript">
+    Vue.component('items',{
+      props:['doing'],
+      template: '<li>{{doing.text}}</li>'
+    })
+
+    var example = new Vue({
+      el:'#tmp7',
+      data:{
+        groceryList:[
+        {id:0, text:'hello'},
+        {id:1, text:'sg-moomins'},
+        {id:2, text:'to the blogger'}
+        ]
+      }
+    })
+
+    var example2 = new Vue({
+      el: '#listEx',
+      data:{
+        mainMessage : 'tistory',
+        temp: [
+          {message : 'romin_pic'},
+          {message : 'romin_music'}
+        ]
+      }
+    })
+
+    var example2 = new Vue({
+      el: '#listEx',
+      data:{
+        mainMessage : 'tistory',
+        temp: [
+          {message : 'romin_pic'},
+          {message : 'romin_music'}
+        ]
+      }
+    })
+
+    new Vue({
+      el: '#v-for-object',
+      data: {
+        object: {
+          title : '세무민 회사생활 화이팅!',
+          author: 'sg-moomin',
+          De: '2021-09-06'
+        }
+      }
+    })
+
+  </script>
+</html>
