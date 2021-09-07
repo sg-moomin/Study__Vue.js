@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>tistory sg-moomin</title>
+    <!-- veu.js 기본 선언  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+  </head>
+
+  <body>
+  <br>
+  <b>※ List 대한 사용방법</b>
+    <ul id="v-for-object" class="demo">
+      <li v-for="value in object">
+        {{ value }}
+      </li>
+    </ul>
+    <ul id="v-for-object2" class="demo">
+      <div v-for="(value, name, index) in object">
+        {{ index }}. {{ name }}: {{ value }}
+      </div>
+    </ul>
+    <br>
+    <b>※ 배열에 대한 사용방법</b>
+    <div id="obj">
+      {{ items }}
+    </div>
+    <div id="obj2">
+      {{ profile }}
+    </div>
+    <br>
+    <b>※ computed에 대한 사용방법</b>
+    <ul id="computedTest">
+      <li v-for="n in evenNumbers">{{ n }}</li>
+    </ul>
+    <br>
+    <b>※ methods에 대한 사용방법</b>
+    <br>
+    <ul id="methodsTest">
+      <li v-for="temp in even(number)">{{ temp }}</li>
+    </ul>
+    <br>
+    <b>※ v-for 탬플릿에 대한 사용방법</b>
+    <div>
+      <span v-for="n in 10"> {{ n }} </span>
+    </div>
+    <ul>
+      <template v-for="item in items">
+        <li>{{ item.msg }}</li>
+        <li class="divider" role="presentation"></li>
+      </template>
+    </ul>
+
+  </body>
+
+  <script type="text/javascript">
+    new Vue({
+      el: '#v-for-object',
+      data: {
+          object: {
+            title : " 세무민의 코딩일기 ",
+            author: " sg-moomin ",
+            Day:"2021-09-07"
+          }
+      }
+    })
+
+    new Vue({
+      el: '#v-for-object2',
+      data: {
+          object: {
+            title : " 세무민의 코딩일기 ",
+            author: " sg-moomin ",
+            Day:"2021-09-07"
+          }
+      }
+    })
+  </script>
+  <script type="text/javascript">
+    // 배열
+    var vm = new Vue({
+       el: '#obj',
+       data: {
+         items: ['a', 'b', 'c']
+       }
+    })
+    vm.items[1] = 'x'
+    vm.items.length = 2
+    var vm2 = new Vue({
+      el: '#obj2',
+      data: {
+        profile:{
+          name: 'Pho Be'
+        }
+      }
+    })
+
+    vm2.profile = Object.assign({}, vm2.profile, {
+      age: 27,
+      sex: 'M',
+      local: 'korea',
+      favoriteColor: 'sky blue'
+    })
+  </script>
+  <script type="text/javascript">
+    // computed와 methods
+    new Vue({
+      el: '#computedTest',
+      data: {
+        numbers: [ 1, 2, 3, 4, 5 ]
+      },
+      computed: {
+        evenNumbers: function () {
+          return this.numbers.filter(function (number) {
+            return number % 2 === 0
+          })
+        }
+      }
+
+    })
+    new Vue({
+      el: '#methodsTest',
+      data: {
+        number: [1, 2, 3, 4, 5, 6, 7, 8]
+      },
+      methods: {
+        even: function(number){
+          return number.filter(function(num){
+            return num % 2 === 0
+          })
+        }
+      }
+    })
+  </script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>tistory sg-moomin</title>
+    <!-- veu.js 기본 선언  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+  </head>
+
+  <body>
+  <br>
+  <b>※ Day List </b>
+  <div id="lists">
+    <form v-on:submit.prevent="addNow">
+      <label for="new-todo">할일을 추가해봐</label>
+      <input
+        v-model="newText"
+        id="new-todo"
+        placeholder="sg-moomins"
+      >
+      <button>추가하기</button>
+    </form>
+    <ul>
+      <li
+        is="now-list"
+        v-for="(newNow, index) in now"
+        v-bind:key="newNow.id"
+        v-bind:title="newNow.title"
+        v-on:remove="now.splice(index, 1)"
+      ></li>
+    </ul>
+  </div>
+
+
+
+  <script type="text/javascript">
+    Vue.component('now-list',{
+      template: '\
+      <li>\
+        {{ title }}\
+        <button v-on:click="$emit(\'remove\')">삭제</button>\
+      </li>\
+      ',
+      props: ['title']
+    })
+
+
+    new Vue({
+      el: '#lists',
+      data: {
+        newText: '',
+        now:[
+          {
+              id:1,
+              title: '회사 가기 싫다',
+          },
+          {
+              id:2,
+              title: '공부하기 싫다',
+          },
+          {
+              id:3,
+              title: '쉬고 싶다..ㅎ',
+          },
+          {
+              id:4,
+              title: '세기무민 화이팅',
+          },
+          {
+              id:5,
+              title: 'instagram : romin_pic',
+          }
+        ],
+        nextNowId: 6
+      },
+      methods: {
+        addNow: function(){
+          this.now.push({
+            id: this.nextNowId++,
+            title: this.newText
+          })
+          this.newText = ''
+        }
+      }
+    })
+  </script>
+
+</html>
