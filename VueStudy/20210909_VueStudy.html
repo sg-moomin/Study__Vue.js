@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>20210909_sg-moomin</title>
+    <!-- veu.js 기본 선언  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+  <body>
+    <br>
+    <b><h2>※ 이벤트 예시 </h2></b>
+    <div id = "ex1">
+      <button v-on:click="number += n * n"> 곱하기 </button>
+      <p> Result : {{ number }}</p>
+    </div>
+    <br>
+    <b><h2>※ 알림 메시지 예시 </h2></b>
+    <div id = "ex2">
+      <button v-on:click="select">[Select]</button>
+    </div>
+    <br>
+    <b><h2>※ 알림 메시지 핸들러 예시 </h2></b>
+    <div id = "ex3">
+      <button v-on:click="texts('새벽기상을 꺠우는 세무민의 코딩일기.', $event)">
+        Submit
+      </button>
+    </div>
+    <br>
+    <b><h2>※ checkBox 예시 </h2></b>
+    <div id="ex4">
+      <input type="checkbox" id="create" value="Create" v-model="checks">
+      <label for="create">Create</label>
+      <input type="checkbox" id="update" value="Update" v-model="checks">
+      <label for="update">Update</label>
+      <input type="checkbox" id="delete" value="Delete" v-model="checks">
+      <label for="delete">Delete</label>
+      <br>
+      <br>
+      <span>
+      CUD 중 택한것은? : {{ checks }}
+    </span>
+    </div>
+
+  </body>
+  <script type="text/javascript">
+      var ex = new Vue({
+          el:'#ex1',
+          data:{
+            number : 0,
+            n : 11
+          }
+      });
+
+      var ex2 = new Vue({
+        el: '#ex2',
+        data: {
+          name: 'sg-moomin tistory'
+        },
+        methods: {
+          select:function(event){
+            alert(this.name + '!')
+            if (event){
+              alert(this.name + ' 화이팅!')
+            }
+          }
+        }
+
+      })
+
+      var ex3 = new Vue({
+        el: "#ex3",
+        methods: {
+          texts: function(message, event){
+            if(event) event.preventDefault()
+              alert(message)
+          }
+        }
+      })
+
+
+  </script>
+  <script type="text/javascript">
+    new Vue({
+      el:'#ex4',
+      data: {
+        checks: []
+      }
+    })
+
+  </script>
+</html>
