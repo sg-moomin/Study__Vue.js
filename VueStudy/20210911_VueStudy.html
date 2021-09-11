@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- veu.js 기본 선언  -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>  </head>
+  <body>
+    <div id="el1">
+      <option disabled value="">Check Combo</option>
+      <select v-model="selected">
+      <option>Create</option>
+      <option>Update</option>
+      <option>Delete</option>
+      <option>Select</option>
+    </select>
+    <span> 선택한 값 : {{ selected }}</span>
+  </div>
+  <div id="el2">
+  <select v-model="selected">
+    <option v-for="option in options" v-bind:value="option.value">
+      {{ option.text }}
+    </option>
+  </select>
+  <span> 선택한 값 : {{ selected }}</span>
+  </div>
+  <div id="el3">
+    <my-component></my-component>
+  </div>
+  <div id="el4">
+    <my-temp></my-temp>
+  </div>
+
+  <div id="checkMate">
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+  </div>
+
+
+  </body>
+  <script type="text/javascript">
+
+  // 등록
+  Vue.component('my-component', {
+    template: '<div> sg-moomins bloggers </div>'
+  })
+  // 루트 인스턴스 생성
+  new Vue({
+    el: '#el3'
+  })
+
+    var el1 = new Vue({
+      el:'#el1',
+      data:{
+        selected:''
+      }
+    });
+
+    var el2 = new Vue({
+      el:'#el2',
+      data:{
+        selected: '',
+        options: [
+          {text: 'select', value :'sg-moomin 글 보러가기'},
+          {text: 'update', value :'sg-moomin 글 수정하러 가기'},
+          {text: 'delete', value :'sg-moomin 글 삭제하러 가기'},
+          {text: 'create', value :'sg-moomin 글 만들러 가기'}
+        ]
+      }
+    })
+  </script>
+  <script type="text/javascript">
+
+    var Child = {
+      template: '<div>사용자 정의 컴포넌트 입니다!</div>'
+    }
+
+    new Vue({
+      el: '#el4',
+      components: {
+        // <my-temp> 는 상위 템플릿에서만 사용할 수 있습니다.
+        'my-temp': Child
+      }
+    })
+
+    var data = { counter : 0 }
+
+    Vue.component('simple-counter', {
+      template: '<button v-on:click="counter += 1"> {{ counter }}</button>',
+      data: function(){
+        return {
+          counter:0
+        }
+      }
+    })
+
+    new Vue({
+      el: '#checkMate'
+    })
+
+  </script>
+</html>
