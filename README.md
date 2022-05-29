@@ -1,4 +1,4 @@
-#>> Title : VeuStudy
+#>> Title : Vue.Js 공부
 #### 1. Git 목표
       1. 미니 프로젝트 및 토이 프로젝트
       2. Tistory 공부 내용 작성하기
